@@ -1,0 +1,263 @@
+/* 全体の設定 */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background-color: #17191f;
+    color: #ffffff;
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+/* ヘッダー */
+.header {
+    padding: 24px 8%;
+    border-bottom: 1px solid #343741;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
+/* メインコンテンツ */
+.main {
+    width: 90%;
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 60px 0;
+}
+
+/* メインタイトル */
+.hero {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.hero h2 {
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+.hero p {
+    color: #b8bbc5;
+    font-size: 15px;
+}
+
+/* 入力フォーム全体 */
+.form-section {
+    background-color: #292c35;
+    padding: 32px;
+    border-radius: 12px;
+}
+
+.form-section h2 {
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 28px;
+}
+
+/* 入力項目 */
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group>label,
+.form-group>legend {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 13px;
+    background-color: #3b3e48;
+    border: 1px solid #50535e;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 14px;
+}
+
+input::placeholder {
+    color: #a1a4ae;
+}
+
+/* 時間と距離を横並びにする */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.input-unit {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-unit span {
+    color: #c4c6ce;
+}
+
+/* ルート形式の選択 */
+.route-type-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.route-type-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 16px;
+    background-color: #3b3e48;
+    border: 1px solid #50535e;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+/* ラジオボタンを見えなくする */
+.route-type-card input {
+    position: absolute;
+    opacity: 0;
+}
+
+/* アイコン */
+.route-type-icon {
+    font-size: 28px;
+    color: #ffffff;
+}
+
+/* コース名 */
+.route-type-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* 説明文 */
+.route-type-description {
+    font-size: 12px;
+    color: #d0d3dc;
+}
+
+/* 選択中のカード */
+.route-type-card:has(input:checked) {
+    background-color: #647fba;
+    border-color: #8ba7e0;
+}
+
+/* キーボード操作時のフォーカス */
+.route-type-card:has(input:focus-visible) {
+    outline: 2px solid #ffffff;
+    outline-offset: 3px;
+}
+
+/* 選択中の項目 */
+.route-type-options label:has(input:checked) {
+    background-color: #647fba;
+    border-color: #647fba;
+}
+
+/* 非表示設定 */
+.form-group[hidden] {
+    display: none;
+}
+
+/* チェックボックス */
+fieldset {
+    border: none;
+    padding: 0;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    background-color: #3b3e48;
+    border: 1px solid #50535e;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.checkbox-group input {
+    accent-color: #7b9ed6;
+}
+
+/* ボタン */
+.submit-button {
+    width: 100%;
+    padding: 15px;
+    background-color: #647fba;
+    border: none;
+    border-radius: 6px;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.submit-button:hover {
+    background-color: #7895d1;
+}
+
+/* 結果メッセージ */
+#result-message {
+    color: #c4d4f5;
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 0;
+}
+
+/* フッター */
+.footer {
+    padding: 24px;
+    text-align: center;
+    color: #858994;
+    font-size: 12px;
+    border-top: 1px solid #343741;
+}
+
+/* スマートフォン対応 */
+@media (max-width: 600px) {
+    .header {
+        padding: 20px;
+    }
+
+    .main {
+        padding: 36px 0;
+    }
+
+    .hero h2 {
+        font-size: 24px;
+    }
+
+    .form-section {
+        padding: 22px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}

@@ -1,12 +1,149 @@
-
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ツーリングプランナー</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/script.js" defer></script>
 </head>
+
 <body>
-    <h1>ツーリングプランナー</h1>
-    <p>あなたにぴったりのツーリングコースを提案します。</p>
+    <!-- ヘッダー -->
+    <header class="header">
+        <h1>TOURING PLANNER</h1>
+    </header>
+
+    <!-- メインコンテンツ -->
+    <main class="main">
+
+        <!-- メインタイトル -->
+        <section class="hero">
+            <h2>次の目的地は、自由に。</h2>
+            <p>あなたにぴったりのツーリングコースを提案します。</p>
+        </section>
+
+        <!-- 条件入力フォーム -->
+        <section class="form-section">
+            <h2>ツーリング条件を設定</h2>
+
+            <!-- ルート形式 -->
+            <fieldset class="form-group">
+                <legend>ルート形式</legend>
+
+                <div class="route-type-options">
+                    <label class="route-type-card">
+                        <input type="radio" name="routeType" value="round" checked>
+
+                        <span class="route-type-icon">⟳</span>
+                        <span class="route-type-title">周遊コース</span>
+                        <span class="route-type-description">
+                            出発地点に戻る
+                        </span>
+                    </label>
+
+                    <label class="route-type-card">
+                        <input type="radio" name="routeType" value="oneway">
+
+                        <span class="route-type-icon">⌖</span>
+                        <span class="route-type-title">片道コース</span>
+                        <span class="route-type-description">
+                            目的地を設定する
+                        </span>
+                    </label>
+                </div>
+            </fieldset>
+
+            <!-- 目的地（片道コースの場合のみ表示） -->
+            <div class="form-group" id="destination-group" hidden>
+                <label for="destination">目的地</label>
+                <input type="text" id="destination" name="destination" placeholder="例：天橋立">
+            </div>
+
+            <form id="touring-form">
+
+                <!-- 希望時間・距離 -->
+                <div class="form-row">
+
+                    <div class="form-group">
+                        <label for="time">希望時間</label>
+                        <select id="time" name="time">
+                            <option value="2">2時間</option>
+                            <option value="3">3時間</option>
+                            <option value="4" selected>4時間</option>
+                            <option value="5">5時間</option>
+                            <option value="6">6時間</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="distance">希望距離</label>
+                        <div class="input-unit">
+                            <input type="number" id="distance" name="distance" placeholder="例：150" min="1">
+                            <span>km</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 走りたい道 -->
+                <fieldset class="form-group">
+                    <legend>走りたい道</legend>
+
+                    <div class="checkbox-group">
+                        <label>
+                            <input type="checkbox" name="road" value="mountain">
+                            山道
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="road" value="lakeside">
+                            湖岸
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="road" value="seaside">
+                            海沿い
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="road" value="winding">
+                            ワインディング
+                        </label>
+                    </div>
+                </fieldset>
+
+                <!-- 方面 -->
+                <div class="form-group">
+                    <label for="direction">希望する方面</label>
+                    <select id="direction" name="direction">
+                        <option value="">指定しない</option>
+                        <option value="north">北方面</option>
+                        <option value="south">南方面</option>
+                        <option value="east">東方面</option>
+                        <option value="west">西方面</option>
+                    </select>
+                </div>
+
+                <!-- 提案ボタン -->
+                <button type="submit" class="submit-button">
+                    コースを提案する
+                </button>
+
+                <p id="result-message" role="status" aria-live="polite"></p>
+
+            </form>
+        </section>
+
+    </main>
+
+    <!-- フッター -->
+    <footer class="footer">
+        <p>&copy; TOURING PLANNER</p>
+    </footer>
+
 </body>
+
 </html>
