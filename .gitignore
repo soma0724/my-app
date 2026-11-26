@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# 秘密情報を含むフォルダー
+secret/

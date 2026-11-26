@@ -31,33 +31,70 @@ routeTypes.forEach(function (routeType) {
 const resultMessage = document.getElementById("result-message");
 
 // フォームが送信されたときの処理
-form.addEventListener("submit", function (event) {
+
+form.addEventListener("submit", async function (event) {
 
     // ページの再読み込みを防ぐ
     event.preventDefault();
 
-    // 入力された値を取得
-    const time = document.getElementById("time").value;
-    const distance = document.getElementById("distance").value;
-    const direction = document.getElementById("direction").value;
-
     // 選択された道路の特徴を取得
-    const roads = document.querySelectorAll('input[name="road"]:checked');
+    const roads = document.querySelectorAll(
+        'input[name="road"]:checked'
+    );
 
     const selectedRoads = [];
 
     roads.forEach(function (road) {
-        selectedRoads.push(road.parentElement.textContent.trim());
+        selectedRoads.push(road.value);
     });
 
-    // 入力内容を表示
-    resultMessage.textContent =
-        `${time}時間 / ${distance || "指定なし"}km`;
+    // 利用者が入力した条件をオブジェクトにまとめる
+    const touringConditions = {
+        routeType: document.querySelector(
+            'input[name="routeType"]:checked'
+        ).value,
 
-    // コンソールにも入力内容を表示
-    console.log("希望時間:", time);
-    console.log("希望距離:", distance);
-    console.log("走りたい道:", selectedRoads);
-    console.log("希望方面:", direction);
+        destination: destinationInput.value,
+
+        time: document.getElementById("time").value,
+
+        distance: document.getElementById("distance").value,
+
+        roads: selectedRoads,
+
+        direction: document.getElementById("direction").value
+    };
+
+    // 入力内容を表示
+    resultMessage.textContent = "ルートを検索しています...";
+
+    // Spring Bootにデータを送信
+    try {
+        const response = await fetch("/api/touring", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(touringConditions)
+        });
+
+        // Spring Bootからの返答を取得
+        const result = await response.text();
+
+        if (!response.ok) {
+            throw new Error(result);
+        }
+
+        resultMessage.textContent = result;
+
+        console.log("送信した条件:", touringConditions);
+        console.log("サーバーからの返答:", result);
+
+    } catch (error) {
+        console.error("通信エラー:", error);
+        resultMessage.textContent =
+            "サーバーとの通信に失敗しました。";
+    }
 
 });
+
